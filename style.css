@@ -1,0 +1,455 @@
+:root {
+    --bg-gradient: radial-gradient(circle at top, #ff9a9e, #fecfef 40%, #f6d5f7);
+    --panel-bg: rgba(255, 255, 255, 0.9);
+    --accent: #ff4b8b;
+    --accent-dark: #d9005b;
+    --text-main: #3a2351;
+    --shadow-soft: 0 18px 35px rgba(0, 0, 0, 0.18);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--bg-gradient);
+    color: var(--text-main);
+    overflow-x: hidden;
+    position: relative;
+    padding: 20px;
+}
+
+/* Floating background hearts */
+
+.background-hearts {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.background-hearts::before,
+.background-hearts::after {
+    content: "💖 💕 💘 💗 💓 💞";
+    position: absolute;
+    left: 0;
+    right: 0;
+    font-size: 2.2rem;
+    text-align: center;
+    animation: floatHearts 18s linear infinite;
+    opacity: 0.2;
+}
+
+.background-hearts::after {
+    animation-duration: 24s;
+    animation-delay: 5s;
+    opacity: 0.25;
+}
+
+@keyframes floatHearts {
+    0% {
+        transform: translateY(100vh);
+    }
+
+    100% {
+        transform: translateY(-120vh);
+    }
+}
+
+/* Layout */
+
+.top-bar {
+    text-align: center;
+    margin-bottom: 20px;
+    animation: fadeDown 0.8s ease-out;
+}
+
+.top-bar h1 {
+    font-size: 2.5rem;
+    letter-spacing: 0.08em;
+}
+
+.top-bar p {
+    margin-top: 8px;
+    opacity: 0.9;
+}
+
+main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 18px;
+}
+
+/* Panels */
+
+.panel {
+    background: var(--panel-bg);
+    border-radius: 18px;
+    padding: 18px 18px 22px;
+    box-shadow: var(--shadow-soft);
+    backdrop-filter: blur(16px);
+    transform-origin: center;
+    animation: popIn 0.5s ease-out;
+}
+
+.panel h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+/* Buttons */
+
+.kiss-btn,
+.secondary-btn {
+    border: none;
+    outline: none;
+    border-radius: 999px;
+    padding: 12px 22px;
+    font-size: 1rem;
+    cursor: pointer;
+    background: linear-gradient(135deg, #ff6cab, #ff8eb3);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 10px 22px rgba(255, 75, 139, 0.45);
+    transform: translateY(0);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.2s ease;
+}
+
+.secondary-btn {
+    background: linear-gradient(135deg, #fff, #ffe5f0);
+    color: var(--accent-dark);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+}
+
+.kiss-btn:hover,
+.secondary-btn:hover {
+    transform: translateY(-2px) scale(1.03);
+    filter: brightness(1.05);
+}
+
+.kiss-btn:active,
+.secondary-btn:active {
+    transform: translateY(1px) scale(0.98);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Kiss message */
+
+.kiss-message {
+    margin-top: 12px;
+    min-height: 24px;
+    font-weight: 500;
+}
+
+.kiss-message.small {
+    font-size: 0.9rem;
+}
+
+/* Counter */
+
+.kiss-counter {
+    margin-top: 6px;
+    font-size: 0.95rem;
+}
+
+#kissCount {
+    font-weight: 700;
+    color: var(--accent-dark);
+}
+
+/* Cards */
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.kiss-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    padding: 10px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.kiss-card h3 {
+    font-size: 1rem;
+    margin-bottom: 4px;
+}
+
+.kiss-card p {
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+.card-kiss {
+    position: absolute;
+    font-size: 1.6rem;
+    right: 8px;
+    bottom: 6px;
+    transition: transform 0.3s ease;
+}
+
+.kiss-card::after {
+    content: "💋";
+    position: absolute;
+    font-size: 2.8rem;
+    opacity: 0;
+    top: 10%;
+    left: 10%;
+    transform: scale(0.4);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.kiss-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+    background: linear-gradient(145deg, #ffe6f3, #ffffff);
+}
+
+.kiss-card:hover .card-kiss {
+    transform: translateY(-6px) rotate(-6deg);
+}
+
+.kiss-card.active::after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Slider */
+
+.panel-slider .slider-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#intensitySlider {
+    flex: 1;
+}
+
+.hint-text {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+/* Form */
+
+.form-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+#nameInput {
+    flex: 1;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    padding: 10px 14px;
+    outline: none;
+    font-size: 0.95rem;
+}
+
+#nameInput:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px rgba(255, 75, 139, 0.4);
+}
+
+/* Toggle & switch */
+
+.panel-toggle .toggle-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+/* iOS-style switch */
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 46px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider.round {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background-color: #ccc;
+    transition: 0.2s;
+    border-radius: 34px;
+}
+
+.slider.round::before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.2s;
+    border-radius: 50%;
+}
+
+.switch input:checked+.slider.round {
+    background-color: var(--accent);
+}
+
+.switch input:checked+.slider.round::before {
+    transform: translateX(22px);
+}
+
+/* Footer */
+
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+/* Animations */
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes fadeDown {
+    from {
+        opacity: 0;
+        transform: translateY(-16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Heart rain items */
+
+.heart-rain {
+    position: fixed;
+    font-size: 1.6rem;
+    animation: heartFall 4s linear forwards;
+    pointer-events: none;
+    z-index: 5;
+}
+
+@keyframes heartFall {
+    0% {
+        transform: translateY(-10vh) scale(0.8);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(110vh) scale(1);
+        opacity: 0;
+    }
+}
+
+/* Dark mode */
+
+body.dark {
+    --bg-gradient: radial-gradient(circle at top, #120019, #250322 40%, #05010a);
+    --panel-bg: rgba(18, 0, 30, 0.9);
+    --text-main: #fceaff;
+}
+
+body.dark .kiss-card {
+    background: rgba(16, 0, 26, 0.95);
+}
+
+body.dark .kiss-card p {
+    opacity: 0.9;
+}
+
+/* Mobile tweaks */
+@media (max-width: 600px) {
+    body {
+        padding: 14px;
+    }
+
+    .top-bar h1 {
+        font-size: 1.9rem;
+    }
+
+    .top-bar p {
+        font-size: 0.9rem;
+    }
+
+    .panel {
+        padding: 14px 12px 18px;
+        border-radius: 14px;
+    }
+
+    .panel h2 {
+        font-size: 1.05rem;
+    }
+
+    .card-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .kiss-btn,
+    .secondary-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 16px;
+        font-size: 0.98rem;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+
+    #nameInput {
+        width: 100%;
+    }
+
+    .panel-slider .slider-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .panel-slider #intensityLabel {
+        font-size: 0.9rem;
+    }
+
+    .footer {
+        font-size: 0.8rem;
+    }
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kiss Factory</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="background-hearts"></div>
+
+    <header class="top-bar">
+        <h1>💋 Kiss Factory</h1>
+        <p>Tap, hover and spam-click to receive unlimited kisses.</p>
+    </header>
+
+    <main>
+        <!-- Big Kiss Button -->
+        <section class="panel panel-main">
+            <h2>Big Kiss Machine</h2>
+            <button id="kissButton" class="kiss-btn">
+                Gimme a Kiss 💋
+            </button>
+            <p id="kissMessage" class="kiss-message">Waiting for your first kiss...</p>
+            <p class="kiss-counter">
+                Total kisses received:
+                <span id="kissCount">0</span>
+            </p>
+        </section>
+
+        <!-- Kiss Cards -->
+        <section class="panel panel-cards">
+            <h2>Kiss Collection</h2>
+            <div class="card-grid">
+                <div class="kiss-card" data-kiss="Soft Kiss 💌">
+                    <h3>Soft Kiss</h3>
+                    <p>Hover for a gentle surprise.</p>
+                    <span class="card-kiss">💌</span>
+                </div>
+                <div class="kiss-card" data-kiss="Power Kiss 💥">
+                    <h3>Power Kiss</h3>
+                    <p>For when you need extra energy.</p>
+                    <span class="card-kiss">💥</span>
+                </div>
+                <div class="kiss-card" data-kiss="Lucky Kiss 🍀">
+                    <h3>Lucky Kiss</h3>
+                    <p>Click to roll for luck.</p>
+                    <span class="card-kiss">🍀</span>
+                </div>
+                <div class="kiss-card" data-kiss="Sleepy Kiss 😴">
+                    <h3>Sleepy Kiss</h3>
+                    <p>Perfect before bedtime.</p>
+                    <span class="card-kiss">😴</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kiss Slider -->
+        <section class="panel panel-slider">
+            <h2>Kiss Intensity</h2>
+            <div class="slider-row">
+                <input type="range" id="intensitySlider" min="1" max="10" value="5" />
+                <span id="intensityLabel">Medium kisses</span>
+            </div>
+            <p class="hint-text">Slide to change how dramatic the kisses feel.</p>
+        </section>
+
+        <!-- Kiss Name Input -->
+        <section class="panel panel-form">
+            <h2>Personalized Kiss</h2>
+            <div class="form-row">
+                <input type="text" id="nameInput" placeholder="Enter your name" />
+                <button id="nameKissBtn" class="secondary-btn">
+                    Kiss me by name 💋
+                </button>
+            </div>
+            <p id="nameKissMessage" class="kiss-message small"></p>
+        </section>
+
+        <!-- Kiss Toggle & Theme -->
+        <section class="panel panel-toggle">
+            <h2>Theme & Mood</h2>
+            <div class="toggle-row">
+                <label class="switch">
+                    <input type="checkbox" id="darkModeToggle" />
+                    <span class="slider round"></span>
+                </label>
+                <span>Dark mode kisses</span>
+            </div>
+
+            <div class="toggle-row">
+                <button id="rainToggleBtn" class="secondary-btn">
+                    Toggle heart rain 🌧️💖
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>Made with infinite 💋 kisses. Customize texts, colors, and emojis in the code.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
